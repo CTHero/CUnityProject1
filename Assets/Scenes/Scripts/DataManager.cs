@@ -12,6 +12,8 @@ public class DataManager : MonoBehaviour
     public GameObject lifeBar = null;
     public int maxLives = 5;
     public int lifeCount = 3;
+    private int hideCount = 0;
+    public bool hiding = false;
 
     void Awake()
     {
@@ -25,5 +27,16 @@ public class DataManager : MonoBehaviour
         me = this;  // Store this instance in a static variable
         DontDestroyOnLoad(gameObject);  //Do not destroy this object when the current scene ends and a new one begins
     }
-
+    public void increaseHideCount()
+    {
+        hideCount++;
+    }
+    public void decreaseHideCount()
+    {
+        hideCount--;
+    }
+    public bool checkHiding()
+    {
+        return (hideCount > 0) && hiding;
+    }
 }

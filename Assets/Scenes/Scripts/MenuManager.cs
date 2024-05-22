@@ -13,7 +13,7 @@ public class MenuManager : MonoBehaviour
     }
     public void gotoScene(int sceneNumber)
     {
-
+        SceneManager.LoadScene(sceneNumber);
     }
     public void EndGame()
     {

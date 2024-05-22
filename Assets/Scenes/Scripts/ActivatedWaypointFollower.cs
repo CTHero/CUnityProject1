@@ -14,7 +14,10 @@ public class ActivatedWaypointFollower : MonoBehaviour, ActivatedObject
         Debug.Log("Activating the ActivatedWaypointFollower");
         isMoving = true;
     }
-
+    public void deactivate()
+    {
+        isMoving = true;
+    }
     private void Update()
     {
         if (isMoving)

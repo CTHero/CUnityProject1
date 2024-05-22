@@ -20,7 +20,10 @@ public class ActivatedMover : MonoBehaviour, ActivatedObject
         Debug.Log("Activating the Mover");
         isMoving = true;
     }
-    
+    public void deactivate()
+    {
+
+    }
     void Update()
     {
         if(isMoving)

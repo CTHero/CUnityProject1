@@ -8,6 +8,7 @@ public class TriggerObject : MonoBehaviour
 {
     [SerializeField] private GameObject objectToTrigger;
     [SerializeField] private LayerMask layerToCollide;
+    [SerializeField] private bool deactivate = false;
     //[SerializeField] private bool disapearOnContact = false;
 
     private ActivatedObject theObject;
@@ -19,8 +20,7 @@ public class TriggerObject : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        //int enemy1 = LayerMask.NameToLayer("Player");
-
+        //Get the layer of the object we just collided with
         LayerMask theLayer = collision.gameObject.layer;
   
         //Stupid shit we have to do to see if the mask and the layer are the same
@@ -29,13 +29,21 @@ public class TriggerObject : MonoBehaviour
             // yup
             Debug.Log("Mask found it");
             theObject.activate();
-           // if(disapearOnContact)
-            //{
-                
-            //}
+
         }
+    }
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        LayerMask theLayer = collision.gameObject.layer;
 
+        //Stupid shit we have to do to see if the mask and the layer are the same
+        if ((layerToCollide.value & (1 << theLayer.value)) != 0)
+        {
+            // yup
+            Debug.Log("Mask found it");
+            theObject.deactivate();
 
+        }
     }
 
 }

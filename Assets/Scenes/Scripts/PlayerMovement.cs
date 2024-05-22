@@ -41,8 +41,10 @@ public class PlayerMovement : MonoBehaviour
         collider = GetComponent<CapsuleCollider2D>();
         anim = GetComponent<Animator>();
         sprite = GetComponent<SpriteRenderer>();
-
-//        Debug.Log("Hello World");
+        if(DataManager.me == null)
+        {
+            Debug.Log("You must create an Empty Game Object in your Hierarchy and add the DataManager component to it.");
+        }
     }
 
     // Update is called once per frame
@@ -97,6 +99,14 @@ public class PlayerMovement : MonoBehaviour
                 }
             }
         }
+        if (Input.GetButton("Fire2"))
+        {
+            DataManager.me.hiding = true;
+        }
+        else
+        {
+            DataManager.me.hiding = false;
+        }
 
         UpdateAnimationState();
     }
@@ -111,13 +121,15 @@ public class PlayerMovement : MonoBehaviour
         if (dirX > 0F)
         {
             state = MovementState.running;
-            sprite.flipX = false;
+            //sprite.flipX = false;
+            transform.localScale = new Vector3(1, 1, 1);
             anim.SetBool("running", true);
         }
         else if (dirX < 0F)
         {
             state = MovementState.running;
-            sprite.flipX = true;
+            //sprite.flipX = true;
+            transform.localScale = new Vector3(-1, 1, 1);
             anim.SetBool("running", true);
         }
         else
